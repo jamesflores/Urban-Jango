@@ -1,0 +1,44 @@
+{% extends "urbanjango/layout.html" %}
+{% load static %}
+
+{% block title %}{{ term }} | Urban Jango{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content">
+        <div class="col-md-8"> 
+            <h1 class="mb-3">Urban Jango</h1>
+            <form action="{% url 'define' %}" method="get">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="term" id="term" aria-describedby="helpId" placeholder="" value="{{ term }}" autofocus>
+                        <small id="helpId" class="form-text text-muted">Type a slang term and we'll find its definition!</small>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-secondary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for result in results %}
+        <div class="row justify-content mt-5">
+            <div class="col-md-8">
+                <h3 class="mb-3">{{ result.word }}</h3>
+                <p>{{ result.definition }}</p>
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if not results %}
+        <div class="row justify-content mt-5">
+            <div class="col-md-8">
+                <h3 class="mb-3">No results found.</h3>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

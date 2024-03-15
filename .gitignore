@@ -1,0 +1,7 @@
+db.sqlite3
+app/__pycache__
+app/migrations/__pycache__
+staticfiles.json
+staticfiles
+urbanjango/__pycache__
+venv
