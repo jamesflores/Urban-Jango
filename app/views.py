@@ -1,12 +1,14 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
 from django.conf import settings
 import requests
 
 
 def index(request):
     return render(request, 'urbanjango/index.html')
+
+
+def about(request):
+    return render(request, 'urbanjango/about.html')
 
 
 def define(request):
