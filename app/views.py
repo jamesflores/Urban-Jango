@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
-from django.conf import settings
 import requests
+
+from app.models import SearchLog
+from urbanjango import settings
 
 
 def index(request):
@@ -16,10 +18,12 @@ def define(request):
         return redirect('index')
     
     term = request.GET.get('term', '')
-    term = term.strip()
+    term = term.strip()[:255]  # limit to 255 characters
     if not term:
         return redirect('index')
-    
+    else:
+        log_search(request)
+
     querystring = { 'term': term }
     headers = {
         "X-RapidAPI-Host": settings.RAPID_API_HOST,
@@ -84,3 +88,12 @@ def define(request):
         'results_count': len(results) if response.status_code == 200 else 0,
         'share_description': share_description
     })
+
+
+def log_search(request):
+    query = request.GET.get('term', '')
+    if query:
+        ip_address = request.META.get('REMOTE_ADDR', '')
+        referrer = request.META.get('HTTP_REFERER', '')
+        log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
+        log.save()
