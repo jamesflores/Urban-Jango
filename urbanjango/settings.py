@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('UJ_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('UJ_DEBUG')
+DEBUG = os.environ.get('UJ_DEBUG') or False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -146,4 +146,4 @@ RAPID_API_URL = os.environ.get('UJ_RAPID_API_URL')  # actual endpoint for Urban 
 # Zapier webhook
 
 ZAPIER_WEBHOOK_URL = os.environ.get('UJ_ZAPIER_WEBHOOK_URL')
-DISABLE_DATABASE_LOGGING = os.environ.get('UJ_DISABLE_DATABASE_LOGGING')
+DISABLE_DATABASE_LOGGING = os.environ.get('UJ_DISABLE_DATABASE_LOGGING') or False
