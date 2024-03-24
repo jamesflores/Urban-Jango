@@ -93,7 +93,19 @@ def define(request):
 def log_search(request):
     query = request.GET.get('term', '')
     if query:
+        print(f"Logging search query: {query}, from IP: {request.META.get('REMOTE_ADDR', '')}, referrer: {request.META.get('HTTP_REFERER', '')}")
         ip_address = request.META.get('REMOTE_ADDR', '')
         referrer = request.META.get('HTTP_REFERER', '')
         log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
         log.save()
+
+        if settings.ZAPIER_WEBHOOK_URL:
+            print("Sending search query to Zapier")
+            data = {
+                'query': query,
+                'ip_address': ip_address,
+                'referrer': referrer,
+                'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+            result = requests.post(settings.ZAPIER_WEBHOOK_URL, json=data)
+            print(result.status_code, result.text)

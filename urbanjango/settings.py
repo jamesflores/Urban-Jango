@@ -147,3 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 RAPID_API_KEY = os.environ.get('UJ_RAPID_API_KEY')
 RAPID_API_HOST = os.environ.get('UJ_RAPID_API_HOST')
 RAPID_API_URL = os.environ.get('UJ_RAPID_API_URL')  # actual endpoint for Urban Dictionary API
+
+# Zapier webhook
+
+ZAPIER_WEBHOOK_URL = os.environ.get('UJ_ZAPIER_WEBHOOK_URL')
