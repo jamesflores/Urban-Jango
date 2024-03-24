@@ -146,3 +146,4 @@ RAPID_API_URL = os.environ.get('UJ_RAPID_API_URL')  # actual endpoint for Urban 
 # Zapier webhook
 
 ZAPIER_WEBHOOK_URL = os.environ.get('UJ_ZAPIER_WEBHOOK_URL')
+DISABLE_DATABASE_LOGGING = os.environ.get('UJ_DISABLE_DATABASE_LOGGING')
