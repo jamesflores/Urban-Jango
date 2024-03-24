@@ -3,6 +3,7 @@ import requests
 
 from app.models import SearchLog
 from urbanjango import settings
+import datetime
 
 
 def index(request):
@@ -97,8 +98,8 @@ def log_search(request):
         ip_address = request.META.get('REMOTE_ADDR', '')
         referrer = request.META.get('HTTP_REFERER', '')
 
-        log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
         if not settings.DISABLE_DATABASE_LOGGING:
+            log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
             log.save()
 
         if settings.ZAPIER_WEBHOOK_URL:
@@ -107,7 +108,7 @@ def log_search(request):
                 'query': query,
                 'ip_address': ip_address,
                 'referrer': referrer,
-                'timestamp': log.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                'timestamp': datetime.datetime.now().isoformat()
             }
             result = requests.post(settings.ZAPIER_WEBHOOK_URL, json=data)
             print(result.status_code, result.text)
