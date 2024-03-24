@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('UJ_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('UJ_DEBUG')
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -147,6 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 RAPID_API_KEY = os.environ.get('UJ_RAPID_API_KEY')
 RAPID_API_HOST = os.environ.get('UJ_RAPID_API_HOST')
 RAPID_API_URL = os.environ.get('UJ_RAPID_API_URL')  # actual endpoint for Urban Dictionary API
+
 
 # Zapier webhook
 
