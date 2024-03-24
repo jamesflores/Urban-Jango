@@ -97,8 +97,8 @@ def log_search(request):
         ip_address = request.META.get('REMOTE_ADDR', '')
         referrer = request.META.get('HTTP_REFERER', '')
 
+        log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
         if not settings.DISABLE_DATABASE_LOGGING:
-            log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
             log.save()
 
         if settings.ZAPIER_WEBHOOK_URL:
