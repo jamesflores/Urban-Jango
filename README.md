@@ -13,6 +13,8 @@ export UJ_RAPID_API_KEY=
 export UJ_RAPID_API_HOST=mashape-community-urban-dictionary.p.rapidapi.com
 export UJ_RAPID_API_URL=https://mashape-community-urban-dictionary.p.rapidapi.com/define
 export UJ_SECRET_KEY=
+export UJ_ZAPIER_WEBHOOK_URL=  # optional, sends logging data
+export UJ_DISABLE_DATABASE_LOGGING=  # optional, disables writes to db
 ```
 5. Run the server: `python manage.py runserver`
 
