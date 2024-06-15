@@ -98,17 +98,5 @@ def log_search(request):
         ip_address = request.META.get('REMOTE_ADDR', '')
         referrer = request.META.get('HTTP_REFERER', '')
 
-        if not settings.DISABLE_DATABASE_LOGGING:
-            log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
-            log.save()
-
-        if settings.ZAPIER_WEBHOOK_URL:
-            print("Sending search query to Zapier")
-            data = {
-                'query': query,
-                'ip_address': ip_address,
-                'referrer': referrer,
-                'timestamp': datetime.datetime.now().isoformat()
-            }
-            result = requests.post(settings.ZAPIER_WEBHOOK_URL, json=data)
-            print(result.status_code, result.text)
+        log = SearchLog(query=query, ip_address=ip_address, referrer=referrer)
+        log.save()

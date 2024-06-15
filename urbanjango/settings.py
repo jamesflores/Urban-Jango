@@ -29,12 +29,7 @@ SECRET_KEY = os.environ.get('UJ_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('UJ_DEBUG') or False
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '.herokuapp.com',
-    '.jamesf.xyz',
-    '.ondigitalocean.app'
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,9 +136,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 RAPID_API_KEY = os.environ.get('UJ_RAPID_API_KEY')
 RAPID_API_HOST = os.environ.get('UJ_RAPID_API_HOST')
 RAPID_API_URL = os.environ.get('UJ_RAPID_API_URL')  # actual endpoint for Urban Dictionary API
-
-
-# Zapier webhook
-
-ZAPIER_WEBHOOK_URL = os.environ.get('UJ_ZAPIER_WEBHOOK_URL')
-DISABLE_DATABASE_LOGGING = os.environ.get('UJ_DISABLE_DATABASE_LOGGING') or False
