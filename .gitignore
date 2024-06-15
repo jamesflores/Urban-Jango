@@ -6,3 +6,4 @@ staticfiles
 urbanjango/__pycache__
 venv
 public
+.env
